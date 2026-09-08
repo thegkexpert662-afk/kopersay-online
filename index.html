@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kopersay Online - Free online image resizing tool." />
+  <meta name="description" content="Kopersay Online - Free online image resizing and compression tool." />
   <title>Kopersay Online - Image Resizer</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -14,16 +14,16 @@
         <img src="logo.svg" alt="Kopersay Technologies" />
       </a>
       <div class="brand-title">Kopersay <span>Online</span></div>
-      <div class="badge">Free Image Resizer</div>
+      <div class="badge">Image Resizer & Compressor</div>
     </header>
 
     <section class="hero">
       <p class="eyebrow">IMAGE TOOLS</p>
-      <h1>Resize your image<br /><span>in seconds.</span></h1>
-      <p class="subtitle">Upload an image, choose your dimensions, preview the result, and download it.</p>
+      <h1>Resize & compress your image<br /><span>in seconds.</span></h1>
+      <p class="subtitle">Change dimensions, reduce file size, choose PNG, JPG or WebP, preview the result, and download it.</p>
     </section>
 
-    <section class="card" aria-label="Image resizer">
+    <section class="card" aria-label="Image resizer and compressor">
       <div id="dropZone" class="drop-zone">
         <input id="fileInput" type="file" accept="image/*" hidden />
         <div class="upload-icon">↥</div>
@@ -41,18 +41,46 @@
               <img id="previewImage" alt="Selected image preview" />
             </div>
             <div id="originalInfo" class="image-info"></div>
+            <div id="outputInfo" class="output-info"></div>
           </div>
 
           <div class="controls">
-            <div class="panel-title">Resize settings</div>
+            <div class="panel-title">Resize & compression settings</div>
             <div class="field-row">
-              <label><span>Width</span><input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
-              <label><span>Height</span><input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
+              <label><span>Width (px)</span><input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
+              <label><span>Height (px)</span><input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
             </div>
+
             <label class="switch-row">
               <span><strong>Lock aspect ratio</strong><small>Keep the original proportions</small></span>
               <input id="lockRatio" type="checkbox" checked />
             </label>
+
+            <div class="settings-block">
+              <label class="full-field">
+                <span>Output format</span>
+                <select id="formatSelect">
+                  <option value="image/jpeg">JPG (recommended for smaller size)</option>
+                  <option value="image/png">PNG (lossless)</option>
+                  <option value="image/webp">WebP (small & modern)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="settings-block">
+              <div class="setting-heading"><span>Quality</span><strong id="qualityValue">85%</strong></div>
+              <input id="qualityInput" class="range-input" type="range" min="10" max="100" value="85" />
+              <small class="hint">Lower quality = smaller file size. Applies to JPG and WebP.</small>
+            </div>
+
+            <div class="settings-block">
+              <label class="full-field">
+                <span>Maximum file size (MB) <em>optional</em></span>
+                <input id="targetMbInput" type="number" min="0.01" max="50" step="0.01" placeholder="e.g. 1.00" inputmode="decimal" />
+              </label>
+              <small class="hint">For JPG/WebP, the tool will automatically lower quality to try to stay under this size.</small>
+            </div>
+
             <div class="presets">
               <p>Quick sizes</p>
               <div class="preset-grid">
@@ -62,8 +90,9 @@
                 <button type="button" data-width="1920" data-height="1080">1920 × 1080</button>
               </div>
             </div>
+
             <div class="actions">
-              <button id="resizeBtn" class="primary-btn" type="button">Resize Image</button>
+              <button id="resizeBtn" class="primary-btn" type="button">Resize & Download</button>
               <button id="resetBtn" class="secondary-btn" type="button">Choose Another</button>
             </div>
             <p id="status" class="status" aria-live="polite"></p>
