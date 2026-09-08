@@ -10,7 +10,10 @@
 <body>
   <main class="page-shell">
     <header class="topbar">
-      <a class="brand" href="#">Kopersay <span>Online</span></a>
+      <a class="brand-logo" href="#" aria-label="Kopersay Technologies">
+        <img src="logo.svg" alt="Kopersay Technologies" />
+      </a>
+      <div class="brand-title">Kopersay <span>Online</span></div>
       <div class="badge">Free Image Resizer</div>
     </header>
 
@@ -42,26 +45,14 @@
 
           <div class="controls">
             <div class="panel-title">Resize settings</div>
-
             <div class="field-row">
-              <label>
-                <span>Width</span>
-                <input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" />
-              </label>
-              <label>
-                <span>Height</span>
-                <input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" />
-              </label>
+              <label><span>Width</span><input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
+              <label><span>Height</span><input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
             </div>
-
             <label class="switch-row">
-              <span>
-                <strong>Lock aspect ratio</strong>
-                <small>Keep the original proportions</small>
-              </span>
+              <span><strong>Lock aspect ratio</strong><small>Keep the original proportions</small></span>
               <input id="lockRatio" type="checkbox" checked />
             </label>
-
             <div class="presets">
               <p>Quick sizes</p>
               <div class="preset-grid">
@@ -71,7 +62,6 @@
                 <button type="button" data-width="1920" data-height="1080">1920 × 1080</button>
               </div>
             </div>
-
             <div class="actions">
               <button id="resizeBtn" class="primary-btn" type="button">Resize Image</button>
               <button id="resetBtn" class="secondary-btn" type="button">Choose Another</button>
@@ -82,11 +72,8 @@
       </div>
     </section>
 
-    <footer>
-      <p>© 2026 Kopersay Technologies • Your image stays on your device.</p>
-    </footer>
+    <footer><p>© 2026 Kopersay Technologies • Your image stays on your device.</p></footer>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
