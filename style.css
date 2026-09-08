@@ -59,6 +59,11 @@ input[type=number]:focus,select:focus { border-color:#4ba9ff; }
 .actions { display:flex; gap:10px; margin-top:20px; }
 .actions button { flex:1; }
 .status { min-height:20px; margin:12px 2px 0; color:#8fa2bf; font-size:13px; }
+.feature-highlights { margin:42px 0 8px; padding:34px 14px 22px; display:grid; grid-template-columns:repeat(3,1fr); column-gap:34px; row-gap:42px; }
+.feature-item { text-align:center; padding:4px 10px; }
+.feature-icon { width:52px; height:52px; margin:0 auto 14px; display:grid; place-items:center; border:1px solid rgba(111,184,255,.18); border-radius:16px; background:rgba(255,255,255,.035); color:#e7f1ff; font-size:27px; line-height:1; }
+.feature-item h3 { margin:0; color:#f5f8ff; font-size:15px; font-weight:800; }
+.feature-item p { margin:18px auto 0; max-width:245px; color:#9aa9c2; font-size:14px; line-height:1.65; }
 footer { text-align:center; padding-top:24px; color:#6f809d; font-size:12px; }
-@media (max-width:800px) { .hero{padding-top:56px}.editor-grid{grid-template-columns:1fr}.preview-box{min-height:300px}.preview-box img{max-height:300px} }
-@media (max-width:520px) { .page-shell{width:min(100% - 20px,1080px)}.topbar{align-items:center}.brand-logo{width:58px;height:58px}.brand-title{font-size:18px}.badge{display:none}h1{letter-spacing:-2px}.card{padding:12px;border-radius:22px}.drop-zone{min-height:370px;padding:20px}.field-row{grid-template-columns:1fr}.actions{flex-direction:column} }
+@media (max-width:800px) { .hero{padding-top:56px}.editor-grid{grid-template-columns:1fr}.preview-box{min-height:300px}.preview-box img{max-height:300px}.feature-highlights{grid-template-columns:repeat(2,1fr);column-gap:20px;row-gap:34px} }
+@media (max-width:520px) { .page-shell{width:min(100% - 20px,1080px)}.topbar{align-items:center}.brand-logo{width:58px;height:58px}.brand-title{font-size:18px}.badge{display:none}h1{letter-spacing:-2px}.card{padding:12px;border-radius:22px}.drop-zone{min-height:370px;padding:20px}.field-row{grid-template-columns:1fr}.actions{flex-direction:column}.feature-highlights{grid-template-columns:1fr;row-gap:30px;margin-top:30px;padding-left:4px;padding-right:4px} }
