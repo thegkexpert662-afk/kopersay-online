@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free PDF tools by Kopersay Online. Create PDF, convert images to PDF and convert text to PDF directly in your browser." />
+  <meta name="description" content="Free PDF tools by Kopersay Online. Create PDF, image to PDF, text to PDF, lock PDF with a password and unlock password-protected PDFs in your browser." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://kopersay.online/pdf.html" />
   <meta property="og:title" content="Kopersay Online - Free PDF Tools" />
-  <meta property="og:description" content="Create PDF, Image to PDF and Text to PDF online for free." />
-  <title>Kopersay Online - Free PDF Tools | Create PDF, Image to PDF & Text to PDF</title>
+  <meta property="og:description" content="Create, convert, lock and unlock PDF files online for free." />
+  <title>Kopersay Online - Free PDF Tools | Create, Image, Text, Lock & Unlock PDF</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7285341203038392" crossorigin="anonymous"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"Kopersay Online PDF Tools","url":"https://kopersay.online/pdf.html","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Create PDF","Image to PDF","Text to PDF"]}
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Kopersay Online PDF Tools","url":"https://kopersay.online/pdf.html","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Create PDF","Image to PDF","Text to PDF","Lock PDF","Unlock PDF"]}
   </script>
+  <style>
+    .topbar-actions{display:flex;align-items:center;gap:10px}.tool-nav{color:var(--text);text-decoration:none;font-weight:800;font-size:13px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.5)}
+    .pdf-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.pdf-tab{border:1px solid var(--line);background:rgba(255,255,255,.52);color:var(--text);border-radius:14px;padding:11px 15px;font-weight:800;cursor:pointer}.pdf-tab.active{background:linear-gradient(135deg,#14afe8,#6845ee);color:#fff;border-color:transparent}.pdf-panel{display:none}.pdf-panel.active{display:block}.pdf-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.pdf-options label,.full-field{display:flex;flex-direction:column;gap:7px;font-weight:700}.pdf-options select,.full-field input,.full-field textarea{width:100%;border:1px solid rgba(120,140,180,.25);border-radius:12px;padding:12px;background:rgba(255,255,255,.75);color:var(--text);font:inherit}.full-field textarea{min-height:180px;resize:vertical}.pdf-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.file-picker{padding:22px;border:2px dashed rgba(104,69,238,.28);border-radius:16px;background:rgba(255,255,255,.42)}.file-picker input{display:block;margin-bottom:10px}.file-list{margin-top:12px;padding:12px;border-radius:12px;background:rgba(255,255,255,.45);font-size:14px;color:var(--muted)}.pdf-note{color:var(--muted);font-size:13px}.pdf-panel .settings-block{margin-bottom:14px}.password-box{max-width:650px}.password-box input{letter-spacing:.5px}.danger-note{font-size:12px;color:var(--muted);margin-top:8px}@media(max-width:700px){.pdf-options{grid-template-columns:1fr}.pdf-tabs{display:grid;grid-template-columns:1fr 1fr}.pdf-tab:last-child{grid-column:1/-1}.topbar-actions .tool-nav{font-size:12px;padding:7px 9px}}
+  </style>
 </head>
 <body>
 <main class="page-shell">
@@ -26,8 +31,8 @@
 
   <section class="hero">
     <p class="eyebrow">FREE ONLINE PDF TOOLS</p>
-    <h1>Create & convert PDF<br /><span>in seconds.</span></h1>
-    <p class="subtitle">Create a PDF from your own text, turn one or multiple images into a PDF, or convert plain text into a clean downloadable PDF. Processing happens in your browser.</p>
+    <h1>Create, lock & convert PDF<br /><span>in seconds.</span></h1>
+    <p class="subtitle">Create PDF, Image to PDF, Text to PDF, Lock PDF with a password, and Unlock PDF with the correct password. Processing happens in your browser.</p>
   </section>
 
   <section class="card" aria-label="PDF tools">
@@ -35,15 +40,13 @@
       <button class="pdf-tab active" data-tab="create" type="button">📄 Create PDF</button>
       <button class="pdf-tab" data-tab="image" type="button">🖼️ Image to PDF</button>
       <button class="pdf-tab" data-tab="text" type="button">📝 Text to PDF</button>
+      <button class="pdf-tab" data-tab="lock" type="button">🔒 Lock PDF</button>
+      <button class="pdf-tab" data-tab="unlock" type="button">🔓 Unlock PDF</button>
     </div>
 
     <section id="create" class="pdf-panel active" role="tabpanel">
-      <div class="settings-block">
-        <label class="full-field"><span>PDF title</span><input id="createTitle" type="text" placeholder="My PDF document" maxlength="120" /></label>
-      </div>
-      <div class="settings-block">
-        <label class="full-field"><span>Write your content</span><textarea id="createText" placeholder="Type or paste your content here..."></textarea></label>
-      </div>
+      <div class="settings-block"><label class="full-field"><span>PDF title</span><input id="createTitle" type="text" placeholder="My PDF document" maxlength="120" /></label></div>
+      <div class="settings-block"><label class="full-field"><span>Write your content</span><textarea id="createText" placeholder="Type or paste your content here..."></textarea></label></div>
       <div class="pdf-options"><label><span>Page size</span><select id="createSize"><option value="a4">A4</option><option value="letter">Letter</option></select></label><label><span>Font size</span><select id="createFont"><option value="12">12</option><option value="14" selected>14</option><option value="16">16</option><option value="18">18</option></select></label><label><span>Margin</span><select id="createMargin"><option value="40">40 px</option><option value="55" selected>55 px</option><option value="70">70 px</option></select></label></div>
       <div class="pdf-actions"><button class="primary-btn" id="createBtn" type="button">Create & Download PDF</button><button class="secondary-btn" id="clearCreate" type="button">Clear</button></div>
     </section>
@@ -60,14 +63,29 @@
       <div class="pdf-options"><label><span>Page size</span><select id="textSize"><option value="a4" selected>A4</option><option value="letter">Letter</option></select></label><label><span>Font size</span><select id="textFont"><option value="11">11</option><option value="12" selected>12</option><option value="14">14</option><option value="16">16</option></select></label><label><span>Line spacing</span><select id="textSpacing"><option value="1.35" selected>Normal</option><option value="1.6">Relaxed</option><option value="1.9">Wide</option></select></label></div>
       <div class="pdf-actions"><button class="primary-btn" id="textBtn" type="button">Convert Text to PDF</button><button class="secondary-btn" id="clearText" type="button">Clear</button></div>
     </section>
+
+    <section id="lock" class="pdf-panel" role="tabpanel">
+      <div class="file-picker"><input id="lockFile" type="file" accept="application/pdf" /><strong>Select the PDF you want to lock</strong><p class="pdf-note">A password is required to open the protected PDF.</p></div>
+      <div class="settings-block password-box"><label class="full-field"><span>Set PDF password</span><input id="lockPassword" type="password" autocomplete="new-password" placeholder="Enter password" minlength="1" /></label><p class="danger-note">Remember your password. It is not sent to Kopersay Online.</p></div>
+      <div class="pdf-actions"><button class="primary-btn" id="lockBtn" type="button">🔒 Lock PDF</button></div>
+    </section>
+
+    <section id="unlock" class="pdf-panel" role="tabpanel">
+      <div class="file-picker"><input id="unlockFile" type="file" accept="application/pdf" /><strong>Select the password-protected PDF</strong><p class="pdf-note">You must provide the correct password to unlock it.</p></div>
+      <div class="settings-block password-box"><label class="full-field"><span>PDF password</span><input id="unlockPassword" type="password" autocomplete="current-password" placeholder="Enter the correct password" minlength="1" /></label></div>
+      <div class="pdf-actions"><button class="primary-btn" id="unlockBtn" type="button">🔓 Unlock PDF</button></div>
+    </section>
+
     <p id="pdfStatus" class="status" aria-live="polite"></p>
-    <p class="pdf-note">Privacy: your text and images are processed locally in your browser and are not uploaded by Kopersay Online.</p>
+    <p class="pdf-note">Privacy: your PDF, password and content are processed locally in your browser. Nothing is uploaded by Kopersay Online.</p>
   </section>
 
   <section class="feature-highlights" aria-label="PDF tool features">
     <div class="feature-item"><div class="feature-icon">📄</div><h3>Create PDF</h3><p>Make a clean PDF document from your own content.</p></div>
     <div class="feature-item"><div class="feature-icon">🖼️</div><h3>Image to PDF</h3><p>Combine multiple images into a single PDF file.</p></div>
     <div class="feature-item"><div class="feature-icon">📝</div><h3>Text to PDF</h3><p>Turn plain text into a downloadable PDF document.</p></div>
+    <div class="feature-item"><div class="feature-icon">🔒</div><h3>Lock PDF</h3><p>Protect supported PDFs with a password before sharing.</p></div>
+    <div class="feature-item"><div class="feature-icon">🔓</div><h3>Unlock PDF</h3><p>Use the correct password to create an unlocked copy.</p></div>
   </section>
   <footer><p>© 2026 Kopersay Technologies • PDF processing happens in your browser.</p></footer>
 </main>
