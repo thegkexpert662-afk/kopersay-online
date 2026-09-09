@@ -33,6 +33,16 @@
     "featureList": ["Resize images online","Compress images online","Create PDF","Image to PDF","Text to PDF","Convert JPG, PNG and WebP images"]
   }
   </script>
+  <style>
+    .sample-flow{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr;align-items:center;gap:8px;max-width:760px;margin:18px auto 28px}
+    .sample-box{height:150px;border:1px solid rgba(255,255,255,.9);border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(37,70,100,.12);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .sample-box img{width:100%;height:100%;object-fit:cover;display:block}
+    .sample-label{font-size:12px;font-weight:800;color:#66758a;text-transform:uppercase;letter-spacing:1px;text-align:center;margin-top:7px}
+    .sample-arrow{font-size:28px;font-weight:900;color:#6545ed;text-align:center}
+    .sample-center{height:150px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#6845ee,#15afe9);color:#fff;box-shadow:0 14px 30px rgba(71,113,220,.22)}
+    .sample-center strong{font-size:22px}.sample-center span{font-size:10px;margin-top:6px;letter-spacing:1px;text-transform:uppercase;opacity:.9}
+    @media(max-width:700px){.sample-flow{grid-template-columns:1fr 28px 1fr;gap:5px}.sample-center{grid-column:1/-1;grid-row:1;height:70px}.sample-box{height:125px}.sample-arrow{font-size:23px}.sample-flow .sample-item:nth-child(1){grid-column:1;grid-row:2}.sample-flow .sample-item:nth-child(3){grid-column:3;grid-row:2}.sample-flow .sample-item:nth-child(5){grid-column:1;grid-row:3}.sample-flow .sample-item:nth-child(6){grid-column:2;grid-row:3}.sample-flow .sample-item:nth-child(7){grid-column:3;grid-row:3}}
+  </style>
 </head>
 <body>
   <main class="page-shell">
@@ -49,6 +59,13 @@
       <p class="eyebrow">FREE ONLINE IMAGE TOOL</p>
       <h1>Resize & compress your image<br /><span>in seconds.</span></h1>
       <p class="subtitle">Resize and compress JPG, PNG and WebP images online for free. Set custom dimensions, reduce file size, preview the result, and download it.</p>
+      <div class="sample-flow" aria-label="3MP photo through Kopersay to HD photo">
+        <div class="sample-item"><div class="sample-box"><img src="3mp-sample.svg" alt="3MP sample photo" /></div><div class="sample-label">3MP</div></div>
+        <div class="sample-arrow" aria-hidden="true">→</div>
+        <div class="sample-center"><strong>Kopersay</strong><span>Image Resize</span></div>
+        <div class="sample-arrow" aria-hidden="true">→</div>
+        <div class="sample-item"><div class="sample-box"><img src="hd-sample.svg" alt="HD sample photo" /></div><div class="sample-label">HD</div></div>
+      </div>
     </section>
 
     <section class="card" aria-label="Image resizer and compressor">
