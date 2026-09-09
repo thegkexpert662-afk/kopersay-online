@@ -8,6 +8,7 @@ const outputInfo = document.getElementById('outputInfo');
 const widthInput = document.getElementById('widthInput');
 const heightInput = document.getElementById('heightInput');
 const lockRatio = document.getElementById('lockRatio');
+const hdSelect = document.getElementById('hdSelect');
 const formatSelect = document.getElementById('formatSelect');
 const qualityInput = document.getElementById('qualityInput');
 const qualityValue = document.getElementById('qualityValue');
@@ -40,15 +41,19 @@ dropZone.addEventListener('drop', event => handleFile(event.dataTransfer.files?.
 
 widthInput.addEventListener('input', () => {
   if (!lockRatio.checked || !aspectRatio) return;
+  hdSelect.value = 'none';
   const width = Number(widthInput.value);
   if (width > 0) heightInput.value = Math.max(1, Math.round(width / aspectRatio));
 });
 
 heightInput.addEventListener('input', () => {
   if (!lockRatio.checked || !aspectRatio) return;
+  hdSelect.value = 'none';
   const height = Number(heightInput.value);
   if (height > 0) widthInput.value = Math.max(1, Math.round(height * aspectRatio));
 });
+
+hdSelect.addEventListener('change', applyHdPreset);
 
 qualityInput.addEventListener('input', () => {
   qualityValue.textContent = `${qualityInput.value}%`;
@@ -63,6 +68,7 @@ formatSelect.addEventListener('change', () => {
 
 presetButtons.forEach(button => {
   button.addEventListener('click', () => {
+    hdSelect.value = 'none';
     widthInput.value = button.dataset.width;
     heightInput.value = button.dataset.height;
   });
@@ -70,6 +76,40 @@ presetButtons.forEach(button => {
 
 resizeBtn.addEventListener('click', resizeAndDownload);
 resetBtn.addEventListener('click', resetTool);
+
+function applyHdPreset() {
+  if (!sourceImage || hdSelect.value === 'none') return;
+
+  const value = hdSelect.value;
+  let width;
+  let height;
+
+  if (value === '2x' || value === '4x') {
+    const multiplier = value === '2x' ? 2 : 4;
+    width = Math.round(sourceImage.width * multiplier);
+    height = Math.round(sourceImage.height * multiplier);
+  } else {
+    const longSide = ({ hd: 1280, fhd: 1920, '2k': 2560, '4k': 3840 })[value];
+    if (!longSide) return;
+    const sourceLongSide = Math.max(sourceImage.width, sourceImage.height);
+    const scale = longSide / sourceLongSide;
+    width = Math.round(sourceImage.width * scale);
+    height = Math.round(sourceImage.height * scale);
+  }
+
+  const maxDimension = 10000;
+  if (width > maxDimension || height > maxDimension) {
+    const scale = maxDimension / Math.max(width, height);
+    width = Math.max(1, Math.round(width * scale));
+    height = Math.max(1, Math.round(height * scale));
+    setStatus('The selected HD size was capped at 10,000px for browser safety.');
+  } else {
+    setStatus(`${hdSelect.options[hdSelect.selectedIndex].text} selected.`);
+  }
+
+  widthInput.value = width;
+  heightInput.value = height;
+}
 
 function handleFile(file) {
   if (!file || !file.type.startsWith('image/')) {
@@ -85,6 +125,7 @@ function handleFile(file) {
     aspectRatio = image.width / image.height;
     widthInput.value = image.width;
     heightInput.value = image.height;
+    hdSelect.value = 'none';
     previewImage.src = url;
     originalInfo.textContent = `Original: ${image.width} × ${image.height}px • ${formatBytes(file.size)}`;
     outputInfo.textContent = '';
@@ -134,7 +175,7 @@ async function resizeAndDownload() {
   ctx.drawImage(sourceImage, 0, 0, width, height);
 
   resizeBtn.disabled = true;
-  setStatus('Preparing your compressed image...');
+  setStatus(hdSelect.value !== 'none' ? 'Creating your HD image...' : 'Preparing your compressed image...');
 
   let quality = Math.max(0.1, Math.min(1, Number(qualityInput.value) / 100));
   let blob = await canvasToBlob(canvas, outputType, quality);
@@ -162,8 +203,9 @@ async function resizeAndDownload() {
   const link = document.createElement('a');
   const extension = outputType === 'image/png' ? 'png' : outputType === 'image/webp' ? 'webp' : 'jpg';
   const baseName = currentFile.name.replace(/\.[^/.]+$/, '') || 'image';
+  const hdSuffix = hdSelect.value !== 'none' ? '-HD' : '';
   link.href = url;
-  link.download = `${baseName}-${width}x${height}.${extension}`;
+  link.download = `${baseName}-${width}x${height}${hdSuffix}.${extension}`;
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -192,6 +234,7 @@ function resetTool() {
   fileInput.value = '';
   targetMbInput.value = '';
   formatSelect.value = 'image/jpeg';
+  hdSelect.value = 'none';
   qualityInput.disabled = false;
   targetMbInput.disabled = false;
   editor.classList.add('hidden');
