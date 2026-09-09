@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kopersay Online is a free image resizer and compressor. Resize and compress JPG, PNG and WebP images online, set custom dimensions and reduce file size in your browser." />
+  <meta name="description" content="Kopersay Online is a free image resizer, compressor and PDF tools website. Resize images, create PDFs, convert images to PDF and convert text to PDF online." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0b6e69" />
   <meta name="google-adsense-account" content="ca-pub-7285341203038392" />
   <link rel="canonical" href="https://kopersay.online/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kopersay.online/" />
-  <meta property="og:title" content="Kopersay Online - Free Image Resizer & Compressor" />
-  <meta property="og:description" content="Resize and compress JPG, PNG and WebP images online for free. Set custom dimensions and reduce image file size directly in your browser." />
+  <meta property="og:title" content="Kopersay Online - Free Image Resizer, Compressor & PDF Tools" />
+  <meta property="og:description" content="Resize and compress images, create PDFs, convert images to PDF and convert text to PDF online for free." />
   <meta property="og:site_name" content="Kopersay Online" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kopersay Online - Free Image Resizer & Compressor" />
-  <meta name="twitter:description" content="Free online image resizing and compression for JPG, PNG and WebP images." />
-  <title>Kopersay Online - Free Image Resizer & Compressor</title>
+  <meta name="twitter:title" content="Kopersay Online - Free Image Resizer, Compressor & PDF Tools" />
+  <meta name="twitter:description" content="Free online image tools and PDF tools from Kopersay Online." />
+  <title>Kopersay Online - Free Image Resizer, Compressor & PDF Tools</title>
   <link rel="stylesheet" href="style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7285341203038392" crossorigin="anonymous"></script>
   <script type="application/ld+json">
@@ -25,33 +25,24 @@
     "@type": "WebApplication",
     "name": "Kopersay Online",
     "url": "https://kopersay.online/",
-    "description": "Free online image resizer and compressor for JPG, PNG and WebP images.",
+    "description": "Free online image resizer, compressor and PDF tools.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Web Browser",
     "browserRequirements": "Requires JavaScript",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "featureList": [
-      "Resize images online",
-      "Compress images online",
-      "Convert JPG, PNG and WebP images",
-      "Custom image dimensions",
-      "Browser-based image processing"
-    ]
+    "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "featureList": ["Resize images online","Compress images online","Create PDF","Image to PDF","Text to PDF","Convert JPG, PNG and WebP images"]
   }
   </script>
 </head>
 <body>
   <main class="page-shell">
     <header class="topbar">
-      <a class="brand-logo" href="#" aria-label="Kopersay Technologies">
-        <img src="logo.svg" alt="Kopersay Technologies" />
-      </a>
+      <a class="brand-logo" href="#" aria-label="Kopersay Technologies"><img src="logo.svg" alt="Kopersay Technologies" /></a>
       <div class="brand-title">Kopersay <span>Online</span></div>
-      <div class="badge">Image Resizer & Compressor</div>
+      <div class="topbar-actions">
+        <a class="tool-nav" href="pdf.html" aria-label="Open PDF Tools">PDF Tools</a>
+        <div class="badge">Image Resizer & Compressor</div>
+      </div>
     </header>
 
     <section class="hero">
@@ -69,124 +60,41 @@
         <button id="chooseBtn" class="primary-btn" type="button">Choose Image</button>
         <small>JPG, PNG, WebP • processed in your browser</small>
       </div>
-
       <div id="editor" class="editor hidden">
         <div class="editor-grid">
-          <div class="preview-wrap">
-            <div class="panel-title">Preview</div>
-            <div class="preview-box">
-              <img id="previewImage" alt="Selected image preview" />
-            </div>
-            <div id="originalInfo" class="image-info"></div>
-            <div id="outputInfo" class="output-info"></div>
-          </div>
-
+          <div class="preview-wrap"><div class="panel-title">Preview</div><div class="preview-box"><img id="previewImage" alt="Selected image preview" /></div><div id="originalInfo" class="image-info"></div><div id="outputInfo" class="output-info"></div></div>
           <div class="controls">
             <div class="panel-title">Resize & compression settings</div>
-            <div class="field-row">
-              <label><span>Width (px)</span><input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
-              <label><span>Height (px)</span><input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" /></label>
-            </div>
-
-            <label class="switch-row">
-              <span><strong>Lock aspect ratio</strong><small>Keep the original proportions</small></span>
-              <input id="lockRatio" type="checkbox" checked />
-            </label>
-
-            <div class="settings-block">
-              <label class="full-field">
-                <span>Output format</span>
-                <select id="formatSelect">
-                  <option value="image/jpeg">JPG (recommended for smaller size)</option>
-                  <option value="image/png">PNG (lossless)</option>
-                  <option value="image/webp">WebP (small & modern)</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="settings-block">
-              <div class="setting-heading"><span>Quality</span><strong id="qualityValue">85%</strong></div>
-              <input id="qualityInput" class="range-input" type="range" min="10" max="100" value="85" />
-              <small class="hint">Lower quality = smaller file size. Applies to JPG and WebP.</small>
-            </div>
-
-            <div class="settings-block">
-              <label class="full-field">
-                <span>Maximum file size (MB) <em>optional</em></span>
-                <input id="targetMbInput" type="number" min="0.01" max="50" step="0.01" placeholder="e.g. 1.00" inputmode="decimal" />
-              </label>
-              <small class="hint">For JPG/WebP, the tool will automatically lower quality to try to stay under this size.</small>
-            </div>
-
-            <div class="presets">
-              <p>Quick sizes</p>
-              <div class="preset-grid">
-                <button type="button" data-width="512" data-height="512">512 × 512</button>
-                <button type="button" data-width="1024" data-height="1024">1024 × 1024</button>
-                <button type="button" data-width="1080" data-height="1080">1080 × 1080</button>
-                <button type="button" data-width="1920" data-height="1080">1920 × 1080</button>
-              </div>
-            </div>
-
-            <div class="actions">
-              <button id="resizeBtn" class="primary-btn" type="button">Resize & Download</button>
-              <button id="resetBtn" class="secondary-btn" type="button">Choose Another</button>
-            </div>
-            <p id="status" class="status" aria-live="polite"></p>
+            <div class="field-row"><label><span>Width (px)</span><input id="widthInput" type="number" min="1" max="10000" inputmode="numeric" /></label><label><span>Height (px)</span><input id="heightInput" type="number" min="1" max="10000" inputmode="numeric" /></label></div>
+            <label class="switch-row"><span><strong>Lock aspect ratio</strong><small>Keep the original proportions</small></span><input id="lockRatio" type="checkbox" checked /></label>
+            <div class="settings-block"><label class="full-field"><span>Output format</span><select id="formatSelect"><option value="image/jpeg">JPG (recommended for smaller size)</option><option value="image/png">PNG (lossless)</option><option value="image/webp">WebP (small & modern)</option></select></label></div>
+            <div class="settings-block"><div class="setting-heading"><span>Quality</span><strong id="qualityValue">85%</strong></div><input id="qualityInput" class="range-input" type="range" min="10" max="100" value="85" /><small class="hint">Lower quality = smaller file size. Applies to JPG and WebP.</small></div>
+            <div class="settings-block"><label class="full-field"><span>Maximum file size (MB) <em>optional</em></span><input id="targetMbInput" type="number" min="0.01" max="50" step="0.01" placeholder="e.g. 1.00" inputmode="decimal" /></label><small class="hint">For JPG/WebP, the tool will automatically lower quality to try to stay under this size.</small></div>
+            <div class="presets"><p>Quick sizes</p><div class="preset-grid"><button type="button" data-width="512" data-height="512">512 × 512</button><button type="button" data-width="1024" data-height="1024">1024 × 1024</button><button type="button" data-width="1080" data-height="1080">1080 × 1080</button><button type="button" data-width="1920" data-height="1080">1920 × 1080</button></div></div>
+            <div class="actions"><button id="resizeBtn" class="primary-btn" type="button">Resize & Download</button><button id="resetBtn" class="secondary-btn" type="button">Choose Another</button></div><p id="status" class="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="postResizeAd" class="ad-slot" aria-label="Advertisement">
-      <ins class="adsbygoogle"
-           style="display:block;min-height:90px"
-           data-ad-client="ca-pub-7285341203038392"
-           data-ad-slot="4246419617"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+    <section class="pdf-promo" aria-label="PDF tools">
+      <div><p class="eyebrow">NEW PDF TOOLS</p><h2>Create & convert PDFs online</h2><p>Turn images and text into PDF files quickly. Everything runs in your browser.</p></div>
+      <a class="primary-btn" href="pdf.html">Open PDF Tools →</a>
     </section>
+
+    <section id="postResizeAd" class="ad-slot" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block;min-height:90px" data-ad-client="ca-pub-7285341203038392" data-ad-slot="4246419617" data-ad-format="auto" data-full-width-responsive="true"></ins></section>
 
     <section class="feature-highlights" aria-label="Kopersay Online features">
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">↗</div>
-        <h3>Perfect Quality</h3>
-        <p>Resize your images while keeping them clear and ready to use.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">ϟ</div>
-        <h3>Lightning Fast</h3>
-        <p>Quick image processing so you can resize and download in seconds.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">⌘</div>
-        <h3>Easy To Use</h3>
-        <p>Simply upload your image, set the size, and download the result.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">♧</div>
-        <h3>Works Anywhere</h3>
-        <p>Use Kopersay Online directly in your browser on desktop or mobile.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">◇</div>
-        <h3>Privacy Guaranteed</h3>
-        <p>Your images are processed in your browser and stay on your device.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon" aria-hidden="true">♡</div>
-        <h3>It's Free</h3>
-        <p>Resize and compress your images for free with no watermark.</p>
-      </div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">↗</div><h3>Perfect Quality</h3><p>Resize your images while keeping them clear and ready to use.</p></div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">ϟ</div><h3>Lightning Fast</h3><p>Quick image processing so you can resize and download in seconds.</p></div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">⌘</div><h3>Easy To Use</h3><p>Simply upload your image, set the size, and download the result.</p></div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">♧</div><h3>Works Anywhere</h3><p>Use Kopersay Online directly in your browser on desktop or mobile.</p></div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">◇</div><h3>Privacy Guaranteed</h3><p>Your images are processed in your browser and stay on your device.</p></div>
+      <div class="feature-item"><div class="feature-icon" aria-hidden="true">♡</div><h3>It's Free</h3><p>Resize and compress your images for free with no watermark.</p></div>
     </section>
-
     <footer><p>© 2026 Kopersay Technologies • Your image stays on your device.</p></footer>
   </main>
   <script src="script.js"></script>
-  <script>
-    window.addEventListener('load', function () {
-      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-    });
-  </script>
+  <script>window.addEventListener('load',function(){try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}});</script>
 </body>
 </html>
