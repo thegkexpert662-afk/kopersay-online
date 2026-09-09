@@ -30,7 +30,13 @@
     .sample-arrow{font-size:28px;font-weight:900;color:#6545ed;text-align:center}
     .sample-center{height:230px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#6845ee,#15afe9);color:#fff;box-shadow:0 14px 30px rgba(71,113,220,.22)}
     .sample-center strong{font-size:22px}.sample-center span{font-size:10px;margin-top:6px;letter-spacing:1px;text-transform:uppercase;opacity:.9}
-    @media(max-width:700px){.sample-flow{grid-template-columns:1fr 28px 1fr;gap:5px}.sample-center{grid-column:1/-1;grid-row:1;height:80px}.sample-box{height:190px}.sample-arrow{font-size:23px}.sample-flow .sample-item:nth-child(1){grid-column:1;grid-row:2}.sample-flow .sample-item:nth-child(3){grid-column:3;grid-row:2}.sample-flow .sample-item:nth-child(5){grid-column:1;grid-row:3}.sample-flow .sample-item:nth-child(6){grid-column:2;grid-row:3}.sample-flow .sample-item:nth-child(7){grid-column:3;grid-row:3}}
+    .all-tools-menu{position:relative;display:inline-block}
+    .all-tools-button{border:0;cursor:pointer;font:inherit}
+    .all-tools-dropdown{display:none;position:absolute;right:0;top:calc(100% + 10px);width:330px;max-height:70vh;overflow:auto;background:#fff;border:1px solid #e4e8ef;border-radius:16px;box-shadow:0 16px 40px rgba(30,50,80,.18);padding:10px;z-index:1000}
+    .all-tools-menu:hover .all-tools-dropdown,.all-tools-menu:focus-within .all-tools-dropdown{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .all-tools-dropdown a{display:block;padding:10px 9px;border-radius:10px;color:#25334a;text-decoration:none;font-size:13px;font-weight:700;background:#f7f9fc}
+    .all-tools-dropdown a:hover,.all-tools-dropdown a:focus{background:#eaf7f5;color:#0b6e69}
+    @media(max-width:700px){.sample-flow{grid-template-columns:1fr 28px 1fr;gap:5px}.sample-center{grid-column:1/-1;grid-row:1;height:80px}.sample-box{height:190px}.sample-arrow{font-size:23px}.sample-flow .sample-item:nth-child(1){grid-column:1;grid-row:2}.sample-flow .sample-item:nth-child(3){grid-column:3;grid-row:2}.sample-flow .sample-item:nth-child(5){grid-column:1;grid-row:3}.sample-flow .sample-item:nth-child(6){grid-column:2;grid-row:3}.sample-flow .sample-item:nth-child(7){grid-column:3;grid-row:3}.all-tools-dropdown{right:-8px;width:min(92vw,330px)}}
   </style>
 </head>
 <body>
@@ -39,7 +45,28 @@
       <a class="brand-logo" href="#" aria-label="Kopersay Technologies"><img src="logo.svg" alt="Kopersay Technologies" /></a>
       <div class="brand-title">Kopersay <span>Online</span></div>
       <div class="topbar-actions">
-        <a class="tool-nav" href="pdf.html" aria-label="Open PDF Tools">PDF Tools</a>
+        <div class="all-tools-menu">
+          <button class="tool-nav all-tools-button" type="button" aria-haspopup="true">All Tools ▾</button>
+          <nav class="all-tools-dropdown" aria-label="All Kopersay tools">
+            <a href="tools/image-resizer.html">🖼️ Image Resizer</a>
+            <a href="tools/image-compressor.html">🗜️ Image Compressor</a>
+            <a href="tools/image-cropper.html">✂️ Image Cropper</a>
+            <a href="tools/image-converter.html">🔄 JPG PNG WebP Converter</a>
+            <a href="tools/pdf-to-jpg.html">📄 PDF to JPG</a>
+            <a href="tools/jpg-to-pdf.html">📝 JPG to PDF</a>
+            <a href="tools/image-size-calculator.html">📏 Image Size Calculator</a>
+            <a href="tools/percentage-calculator.html">🔢 Percentage Calculator</a>
+            <a href="tools/gst-calculator.html">💰 GST Calculator</a>
+            <a href="tools/age-calculator.html">📅 Age Calculator</a>
+            <a href="tools/time-date-calculator.html">⏱️ Time & Date Calculator</a>
+            <a href="tools/password-generator.html">🔐 Password Generator</a>
+            <a href="tools/word-counter.html">🔤 Word Counter</a>
+            <a href="tools/qr-code-generator.html">📱 QR Code Generator</a>
+            <a href="tools/color-picker.html">🎨 Color Picker</a>
+            <a href="tools/passport-photo-maker.html">📸 Passport Photo Maker</a>
+            <a href="pdf.html">📑 PDF Tools</a>
+          </nav>
+        </div>
         <div class="badge">Image Resizer & Compressor</div>
       </div>
     </header>
