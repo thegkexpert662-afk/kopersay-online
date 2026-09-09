@@ -1,4 +1,5 @@
 const { jsPDF } = window.jspdf;
+const { PDFDocument } = window.PDFLib;
 const $ = id => document.getElementById(id);
 
 function setStatus(message, error = false){
@@ -28,6 +29,14 @@ function addWrappedText(doc, text, x, y, maxWidth, fontSize, lineHeight=1.35){
 
 function download(doc, name){
   doc.save(name.replace(/[^a-z0-9._-]+/gi,'-').replace(/-+/g,'-'));
+}
+
+function downloadBytes(bytes, name){
+  const blob = new Blob([bytes], {type:'application/pdf'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 document.querySelectorAll('.pdf-tab').forEach(tab => {
@@ -114,3 +123,45 @@ $('textBtn').addEventListener('click', () => {
 });
 
 $('clearText').addEventListener('click', () => { $('textContent').value=''; setStatus(''); });
+
+async function readPdfFile(inputId){
+  const file = $(inputId).files?.[0];
+  if(!file) throw new Error('Please select a PDF file.');
+  return new Uint8Array(await file.arrayBuffer());
+}
+
+$('lockBtn').addEventListener('click', async () => {
+  const password = $('lockPassword').value;
+  if(!password){ setStatus('Please enter a password.', true); return; }
+  try{
+    setStatus('Locking PDF...');
+    const bytes = await readPdfFile('lockFile');
+    const pdf = await PDFDocument.load(bytes, {ignoreEncryption:true});
+    if(typeof pdf.encrypt !== 'function') throw new Error('Password protection is not available in this browser library version.');
+    pdf.encrypt({
+      userPassword: password,
+      ownerPassword: password,
+      permissions: { printing:'highResolution', modifying:false, copying:false, annotating:false, fillingForms:false, contentAccessibility:false, documentAssembly:false }
+    });
+    const out = await pdf.save();
+    downloadBytes(out, 'kopersay-locked.pdf');
+    setStatus('PDF locked successfully. Use the same password to open it.');
+  }catch(err){
+    setStatus('Could not lock this PDF. Please use a valid, uncorrupted PDF and try again.', true);
+  }
+});
+
+$('unlockBtn').addEventListener('click', async () => {
+  const password = $('unlockPassword').value;
+  if(!password){ setStatus('Please enter the PDF password.', true); return; }
+  try{
+    setStatus('Checking password and unlocking PDF...');
+    const bytes = await readPdfFile('unlockFile');
+    const pdf = await PDFDocument.load(bytes, {password});
+    const out = await pdf.save();
+    downloadBytes(out, 'kopersay-unlocked.pdf');
+    setStatus('PDF unlocked successfully.');
+  }catch(err){
+    setStatus('Incorrect password or unsupported encrypted PDF.', true);
+  }
+});
