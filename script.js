@@ -17,6 +17,7 @@ const resizeBtn = document.getElementById('resizeBtn');
 const resetBtn = document.getElementById('resetBtn');
 const statusEl = document.getElementById('status');
 const presetButtons = document.querySelectorAll('[data-width]');
+const customSizeButton = document.querySelector('[data-custom-size="true"]');
 
 let currentFile = null;
 let sourceImage = null;
@@ -71,7 +72,17 @@ presetButtons.forEach(button => {
     hdSelect.value = 'none';
     widthInput.value = button.dataset.width;
     heightInput.value = button.dataset.height;
+    if (lockRatio.checked) lockRatio.checked = false;
+    widthInput.focus();
   });
+});
+
+customSizeButton?.addEventListener('click', () => {
+  hdSelect.value = 'none';
+  lockRatio.checked = false;
+  widthInput.focus();
+  widthInput.select();
+  setStatus('Custom size: enter Width and Height using your keyboard.');
 });
 
 resizeBtn.addEventListener('click', resizeAndDownload);
@@ -126,6 +137,7 @@ function handleFile(file) {
     widthInput.value = image.width;
     heightInput.value = image.height;
     hdSelect.value = 'none';
+    lockRatio.checked = true;
     previewImage.src = url;
     originalInfo.textContent = `Original: ${image.width} × ${image.height}px • ${formatBytes(file.size)}`;
     outputInfo.textContent = '';
@@ -235,6 +247,7 @@ function resetTool() {
   targetMbInput.value = '';
   formatSelect.value = 'image/jpeg';
   hdSelect.value = 'none';
+  lockRatio.checked = true;
   qualityInput.disabled = false;
   targetMbInput.disabled = false;
   editor.classList.add('hidden');
