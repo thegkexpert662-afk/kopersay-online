@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free PDF tools by Kopersay Online. Create PDF, convert images to PDF and convert text to PDF directly in your browser." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kopersay.online/pdf.html" />
+  <meta property="og:title" content="Kopersay Online - Free PDF Tools" />
+  <meta property="og:description" content="Create PDF, Image to PDF and Text to PDF online for free." />
+  <title>Kopersay Online - Free PDF Tools | Create PDF, Image to PDF & Text to PDF</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7285341203038392" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Kopersay Online PDF Tools","url":"https://kopersay.online/pdf.html","applicationCategory":"MultimediaApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Create PDF","Image to PDF","Text to PDF"]}
+  </script>
+</head>
+<body>
+<main class="page-shell">
+  <header class="topbar">
+    <a class="brand-logo" href="index.html" aria-label="Kopersay Technologies"><img src="logo.svg" alt="Kopersay Technologies" /></a>
+    <div class="brand-title">Kopersay <span>Online</span></div>
+    <div class="topbar-actions"><a class="tool-nav" href="index.html">Image Tools</a><div class="badge">PDF TOOLS</div></div>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">FREE ONLINE PDF TOOLS</p>
+    <h1>Create & convert PDF<br /><span>in seconds.</span></h1>
+    <p class="subtitle">Create a PDF from your own text, turn one or multiple images into a PDF, or convert plain text into a clean downloadable PDF. Processing happens in your browser.</p>
+  </section>
+
+  <section class="card" aria-label="PDF tools">
+    <div class="pdf-tabs" role="tablist" aria-label="PDF tool selector">
+      <button class="pdf-tab active" data-tab="create" type="button">📄 Create PDF</button>
+      <button class="pdf-tab" data-tab="image" type="button">🖼️ Image to PDF</button>
+      <button class="pdf-tab" data-tab="text" type="button">📝 Text to PDF</button>
+    </div>
+
+    <section id="create" class="pdf-panel active" role="tabpanel">
+      <div class="settings-block">
+        <label class="full-field"><span>PDF title</span><input id="createTitle" type="text" placeholder="My PDF document" maxlength="120" /></label>
+      </div>
+      <div class="settings-block">
+        <label class="full-field"><span>Write your content</span><textarea id="createText" placeholder="Type or paste your content here..."></textarea></label>
+      </div>
+      <div class="pdf-options"><label><span>Page size</span><select id="createSize"><option value="a4">A4</option><option value="letter">Letter</option></select></label><label><span>Font size</span><select id="createFont"><option value="12">12</option><option value="14" selected>14</option><option value="16">16</option><option value="18">18</option></select></label><label><span>Margin</span><select id="createMargin"><option value="40">40 px</option><option value="55" selected>55 px</option><option value="70">70 px</option></select></label></div>
+      <div class="pdf-actions"><button class="primary-btn" id="createBtn" type="button">Create & Download PDF</button><button class="secondary-btn" id="clearCreate" type="button">Clear</button></div>
+    </section>
+
+    <section id="image" class="pdf-panel" role="tabpanel">
+      <div class="file-picker"><input id="imageFiles" type="file" accept="image/*" multiple /><strong>Select one or more images</strong><p class="pdf-note">Images are added in the order selected. JPG, PNG and WebP are supported.</p></div>
+      <div id="imageList" class="file-list">No images selected.</div>
+      <div class="pdf-options"><label><span>Page size</span><select id="imageSize"><option value="a4" selected>A4</option><option value="letter">Letter</option></select></label><label><span>Orientation</span><select id="imageOrientation"><option value="portrait" selected>Portrait</option><option value="landscape">Landscape</option></select></label><label><span>Fit</span><select id="imageFit"><option value="contain" selected>Fit image</option><option value="full">Full page</option></select></label></div>
+      <div class="pdf-actions"><button class="primary-btn" id="imageBtn" type="button">Convert Images to PDF</button><button class="secondary-btn" id="clearImages" type="button">Clear Images</button></div>
+    </section>
+
+    <section id="text" class="pdf-panel" role="tabpanel">
+      <div class="settings-block"><label class="full-field"><span>Text content</span><textarea id="textContent" placeholder="Paste your text here..."></textarea></label></div>
+      <div class="pdf-options"><label><span>Page size</span><select id="textSize"><option value="a4" selected>A4</option><option value="letter">Letter</option></select></label><label><span>Font size</span><select id="textFont"><option value="11">11</option><option value="12" selected>12</option><option value="14">14</option><option value="16">16</option></select></label><label><span>Line spacing</span><select id="textSpacing"><option value="1.35" selected>Normal</option><option value="1.6">Relaxed</option><option value="1.9">Wide</option></select></label></div>
+      <div class="pdf-actions"><button class="primary-btn" id="textBtn" type="button">Convert Text to PDF</button><button class="secondary-btn" id="clearText" type="button">Clear</button></div>
+    </section>
+    <p id="pdfStatus" class="status" aria-live="polite"></p>
+    <p class="pdf-note">Privacy: your text and images are processed locally in your browser and are not uploaded by Kopersay Online.</p>
+  </section>
+
+  <section class="feature-highlights" aria-label="PDF tool features">
+    <div class="feature-item"><div class="feature-icon">📄</div><h3>Create PDF</h3><p>Make a clean PDF document from your own content.</p></div>
+    <div class="feature-item"><div class="feature-icon">🖼️</div><h3>Image to PDF</h3><p>Combine multiple images into a single PDF file.</p></div>
+    <div class="feature-item"><div class="feature-icon">📝</div><h3>Text to PDF</h3><p>Turn plain text into a downloadable PDF document.</p></div>
+  </section>
+  <footer><p>© 2026 Kopersay Technologies • PDF processing happens in your browser.</p></footer>
+</main>
+<script src="pdf.js"></script>
+<script>window.addEventListener('load',function(){try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}});</script>
+</body>
+</html>
