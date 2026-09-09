@@ -1,1 +1,84 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Advanced Percentage Calculator Online | Kopersay</title><meta name="description" content="Calculate percentages, percentage change, increase and decrease online."><link rel="stylesheet" href="style.css"></head><body><div class="wrap"><header class="top"><img src="../logo.svg"><div class="brand">Kopersay <span>Online</span></div><a class="back" href="index.html">All Tools</a></header><section class="hero"><h1>Advanced Percentage Calculator</h1><p>Calculate percentage, change, increase and decrease.</p></section><section class="card"><div class="field"><label>Calculator type</label><select id="type"><option value="of">What is X% of Y?</option><option value="change">Percentage change</option><option value="increase">Increase Y by X%</option><option value="decrease">Decrease Y by X%</option></select></div><div class="row"><div class="field"><label>X / Original</label><input id="x" type="number" step="any" placeholder="25"></div><div class="field"><label>Y / New</label><input id="y" type="number" step="any" placeholder="200"></div></div><button class="btn" onclick="calc()">Calculate Percentage</button><div id="out" class="answer">Enter values.</div></section><footer>© 2026 Kopersay Technologies</footer></div><script src="workbench.js"></script><script>function calc(){let a=+x.value,b=+y.value;if(!Number.isFinite(a)||!Number.isFinite(b))return out.textContent='Enter valid numbers.';let v=type.value;if(v==='of')out.textContent=`${a}% of ${b} = ${(a*b/100).toFixed(4)}`;if(v==='change'){if(b===0)return out.textContent='Original value cannot be zero.';out.textContent=`Percentage change = ${((a-b)/b*100).toFixed(2)}%`}if(v==='increase')out.textContent=`Result = ${(b*(1+a/100)).toFixed(4)}\nIncrease = ${(b*a/100).toFixed(4)}`;if(v==='decrease')out.textContent=`Result = ${(b*(1-a/100)).toFixed(4)}\nDecrease = ${(b*a/100).toFixed(4)}`}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advanced Percentage Calculator Online | Kopersay</title>
+<meta name="description" content="Calculate percentage of a number, percentage change, increase, decrease and original value with step-by-step results.">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{--ink:#102044;--muted:#526888;--line:#dfe8f5;--blue:#168ee8;--purple:#6046f5}
+body{background:linear-gradient(120deg,#e8fbff 0%,#f5f8ff 48%,#eeeaff 100%);color:var(--ink)}
+.wrap{width:min(1400px,calc(100% - 32px));padding:14px 0 40px}
+.top{min-height:58px;background:#ffffffdd;border:1px solid #fff;box-shadow:0 8px 30px #3156a018}
+.top img{width:46px;height:46px}.brand{font-size:22px}.brand span{color:#6547f3}
+.navlinks{display:flex;gap:28px;align-items:center;margin:0 20px;font-weight:800}.navlinks a{color:#102044;text-decoration:none}.navlinks a:hover{color:#5c47ed}
+.status{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 0;padding:10px 4px;border-bottom:1px solid #dce5f2;color:#19335b}.status .privacy{font-size:14px;font-weight:700;margin-right:2px}.status button,.shortcut{border:1px solid #cbd6e5;background:#fff;border-radius:9px;padding:8px 12px;color:#1b2b4b;font-weight:800;cursor:pointer}.status button:hover,.shortcut:hover{transform:translateY(-1px);box-shadow:0 4px 12px #3855a018}
+.crumb{margin-left:auto;color:#617391;font-size:14px}.hero{position:relative;padding:28px 8px 18px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:30px;background:#fff;border:1px solid #fff;box-shadow:0 7px 22px #5d68c51c;font-weight:900;color:#24345a}.eyebrow i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#6947f5,#318df4);color:#fff;font-style:normal}.hero h1{font-size:clamp(42px,5vw,66px);letter-spacing:-2px;margin:15px 0 8px;max-width:1000px}.hero p{font-size:20px;max-width:1000px;margin:0;color:var(--muted)}
+.tip{margin:22px 8px 10px;font-size:16px}.tip b{color:#17274a}.shortcuts{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 8px 18px}.shortcuts strong{margin-right:5px}.shortcut.active{background:#eef0ff;border-color:#c6c9ff;color:#4c3de0}
+.maincard{display:grid;grid-template-columns:1.35fr .85fr;gap:24px;padding:28px;border-radius:28px;background:#ffffffdd;border:1px solid #fff;box-shadow:0 20px 55px #4164a01a}.panel{min-width:0}.label{display:block;font-weight:800;margin:0 0 9px}.selectwrap{position:relative}.selectwrap span{position:absolute;left:16px;top:14px;font-size:20px;z-index:1}.selectwrap select{padding-left:48px}.control,.fieldx{margin-bottom:20px}.fieldx input,.selectwrap select{width:100%;height:52px;border:1px solid var(--line);border-radius:13px;background:#fff;padding:0 16px;font:inherit;color:var(--ink);outline:none;box-shadow:0 2px 8px #334b6c08}.fieldx input:focus,.selectwrap select:focus{border-color:#8ba9ff;box-shadow:0 0 0 4px #647cff12}.inputs{display:grid;grid-template-columns:1fr 1fr;gap:22px}.inputwrap{position:relative}.suffix{position:absolute;right:10px;top:8px;height:36px;min-width:36px;padding:0 10px;border-radius:9px;background:#f0f3f9;display:grid;place-items:center;font-weight:900}.inputwrap input{padding-right:58px}
+.actions{display:grid;grid-template-columns:1.25fr .55fr;gap:16px;margin-top:8px}.primary,.secondary{height:54px;border-radius:13px;font-size:17px;font-weight:900;cursor:pointer}.primary{border:0;color:#fff;background:linear-gradient(100deg,#6045f4,#179fe8);box-shadow:0 10px 22px #5147e52e}.secondary{border:1px solid #d8e0ec;background:#fff;color:#1b2947}
+.resultpanel{padding:20px;border-radius:18px;background:linear-gradient(145deg,#eef8ff,#f4f2ff);border:1px solid #dceaf9}.resulthead{display:flex;align-items:center;justify-content:space-between;font-size:20px;font-weight:900}.resulthead .icon{color:#168ee8;margin-right:8px}.copybtn{border:1px solid #ccd7e6;background:#fff;border-radius:9px;padding:8px 12px;font-weight:800;cursor:pointer}.answerbox{margin-top:14px;padding:20px;border-radius:13px;background:#ddf8e9;border:1px solid #b7ecd0;text-align:center}.answerbox .big{font-size:42px;font-weight:950;color:#079548}.answerbox .formula{margin-top:4px;font-size:16px;color:#234b57}.steps{margin-top:18px}.steps h3{margin:0 0 10px}.step{padding:13px 15px;background:#fff;border:1px solid #dce7f3;border-radius:12px;color:#263d60;font-size:15px}
+.other{margin-top:16px;padding:22px;border-radius:25px;background:#ffffffb8;border:1px solid #fff;box-shadow:0 12px 40px #4164a010}.other h2{margin:0 0 16px;font-size:19px}.othergrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.othercard{border:1px solid #e0e8f3;background:#fff;border-radius:14px;padding:15px;cursor:pointer;transition:.15s}.othercard:hover{transform:translateY(-2px);box-shadow:0 8px 22px #49658c16}.othericon{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:#eef0ff;font-size:20px;margin-bottom:10px}.othercard b{display:block}.othercard small{display:block;color:#63738d;margin-top:4px;line-height:1.35}
+.tips{margin-top:14px;padding:17px 20px;border-radius:14px;background:#e5f5ff;border:1px solid #bfe3ff;color:#355174}.tips strong{color:#102a52;margin-right:12px}.tips ul{margin:8px 0 0 25px;padding:0}.tips li{margin:4px 0}
+@media(max-width:900px){.navlinks{display:none}.maincard{grid-template-columns:1fr}.othergrid{grid-template-columns:repeat(2,1fr)}.crumb{display:none}}
+@media(max-width:600px){.wrap{width:min(100% - 18px,1400px)}.top{border-radius:16px}.hero{padding-top:20px}.hero h1{font-size:40px;letter-spacing:-1px}.hero p{font-size:17px}.inputs,.actions{grid-template-columns:1fr}.maincard{padding:17px;border-radius:20px}.othergrid{grid-template-columns:1fr}.status{font-size:13px}.status .privacy{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<img src="../logo.svg" alt="Kopersay">
+<div class="brand">Kopersay <span>Online</span></div>
+<nav class="navlinks"><a href="../index.html">Home</a><a href="index.html">All Tools⌄</a><a href="image-converter.html">Images⌄</a><a href="percentage-calculator.html">Calculators⌄</a><a href="pdf-to-jpg.html">Converters⌄</a><a href="index.html">More⌄</a></nav>
+<a class="back" href="index.html">All Tools</a>
+</header>
+<div class="status"><span class="privacy">🔒 Runs in your browser</span><button id="fav">☆ Save Tool</button><button id="share">↗ Share</button><button id="resetTop">↻ Reset</button><span class="crumb">Home / Calculators / Percentage Calculator</span></div>
+<section class="hero">
+<div class="eyebrow"><i>▦</i> Calculator Tool</div>
+<h1>Advanced Percentage Calculator</h1>
+<p>Calculate percentage, percentage of a number, find original value, increase, decrease and more.</p>
+</section>
+<div class="tip">⚡ <b>Quick tip:</b> Your non-file settings are remembered on this device. Ctrl/⌘ + Enter runs the main action.</div>
+<div class="shortcuts"><strong>Smart shortcuts:</strong><button class="shortcut" data-p="10">10%</button><button class="shortcut" data-p="18">18%</button><button class="shortcut" data-p="25">25%</button><button class="shortcut" data-p="50">50%</button><button class="shortcut" data-p="100">100%</button><button class="shortcut" data-mode="of">X% of Y</button><button class="shortcut" data-mode="increase">Increase</button><button class="shortcut" data-mode="decrease">Decrease</button><button class="shortcut" data-mode="what">A is what % of B</button></div>
+<section class="maincard">
+<div class="panel">
+<div class="control"><label class="label" for="type">Calculator type</label><div class="selectwrap"><span>▦</span><select id="type"><option value="of">What is X% of Y?</option><option value="what">What % is X of Y?</option><option value="change">Percentage change</option><option value="increase">Increase Y by X%</option><option value="decrease">Decrease Y by X%</option><option value="original">Find original value</option></select></div></div>
+<div class="inputs">
+<div class="fieldx"><label class="label" id="xlabel" for="x">X / Percentage (%)</label><div class="inputwrap"><input id="x" type="number" step="any" value="25"><span class="suffix" id="xs">%</span></div></div>
+<div class="fieldx"><label class="label" id="ylabel" for="y">Y / Number</label><div class="inputwrap"><input id="y" type="number" step="any" value="200"><span class="suffix" id="ys">#</span></div></div>
+</div>
+<div class="actions"><button class="primary" id="calc">▦ &nbsp; Calculate</button><button class="secondary" id="reset">↻ &nbsp; Reset</button></div>
+</div>
+<div class="resultpanel">
+<div class="resulthead"><div><span class="icon">▥</span>Result</div><button class="copybtn" id="copy">▣ Copy</button></div>
+<div class="answerbox"><div class="big" id="big">50</div><div class="formula" id="formula">25% of 200 = <b>50</b></div></div>
+<div class="steps"><h3>☷ &nbsp;Steps</h3><div class="step" id="steps">(25 ÷ 100) × 200 = 0.25 × 200 = 50</div></div>
+</div>
+</section>
+<section class="other"><h2>⚡ &nbsp;Other Calculations</h2><div class="othergrid">
+<div class="othercard" data-mode="of"><div class="othericon">▦</div><b>What is X% of Y?</b><small>Find percentage value</small></div>
+<div class="othercard" data-mode="what"><div class="othericon">%</div><b>What % is X of Y?</b><small>Find percentage</small></div>
+<div class="othercard" data-mode="increase"><div class="othericon">↑</div><b>Increase by X%</b><small>Add percentage</small></div>
+<div class="othercard" data-mode="decrease"><div class="othericon">↓</div><b>Decrease by X%</b><small>Subtract percentage</small></div>
+<div class="othercard" data-mode="original"><div class="othericon">↶</div><b>Original value</b><small>Find original number</small></div>
+</div></section>
+<section class="tips"><strong>💡 Tips</strong><ul><li>Use the calculator type dropdown to choose the calculation you need.</li><li>Use quick shortcuts for common percentages.</li><li>Press Ctrl/⌘ + Enter to calculate quickly.</li><li>Your values are saved in this browser.</li></ul></section>
+<footer>© 2026 Kopersay Technologies</footer>
+</div>
+<script src="workbench.js"></script>
+<script>
+const $=id=>document.getElementById(id);const type=$('type'),x=$('x'),y=$('y'),big=$('big'),formula=$('formula'),steps=$('steps');
+function setMode(m){type.value=m;type.dispatchEvent(new Event('change'));calc()}
+function updateLabels(){let m=type.value;if(m==='of'||m==='increase'||m==='decrease'){ $('xlabel').textContent='X / Percentage (%)';$('ylabel').textContent='Y / Number';$('xs').textContent='%';$('ys').textContent='#';}else if(m==='what'||m==='change'){ $('xlabel').textContent=m==='what'?'X / Part':'X / New value';$('ylabel').textContent=m==='what'?'Y / Whole':'Y / Original value';$('xs').textContent='#';$('ys').textContent='#';}else{$('xlabel').textContent='Percentage (%)';$('ylabel').textContent='Result / Inclusive value';$('xs').textContent='%';$('ys').textContent='#';}}
+function calc(){let a=Number(x.value),b=Number(y.value),m=type.value;if(!Number.isFinite(a)||!Number.isFinite(b)){big.textContent='—';formula.textContent='Enter valid numbers';steps.textContent='';return}let result,desc,step;if(m==='of'){result=a*b/100;desc=`${a}% of ${b} = ${fmt(result)}`;step=`(${a} ÷ 100) × ${b} = ${(a/100).toFixed(4)} × ${b} = ${fmt(result)}`}else if(m==='what'){if(b===0)return showErr('Whole value cannot be zero.');result=a/b*100;desc=`${a} is ${fmt(result)}% of ${b}`;step=`(${a} ÷ ${b}) × 100 = ${fmt(result)}%`}else if(m==='change'){if(b===0)return showErr('Original value cannot be zero.');result=(a-b)/b*100;desc=`Percentage change = ${fmt(result)}%`;step=`((${a} − ${b}) ÷ ${b}) × 100 = ${fmt(result)}%`}else if(m==='increase'){result=b*(1+a/100);desc=`${b} increased by ${a}% = ${fmt(result)}`;step=`${b} + (${a} ÷ 100 × ${b}) = ${b} + ${fmt(b*a/100)} = ${fmt(result)}`}else if(m==='decrease'){result=b*(1-a/100);desc=`${b} decreased by ${a}% = ${fmt(result)}`;step=`${b} − (${a} ÷ 100 × ${b}) = ${b} − ${fmt(b*a/100)} = ${fmt(result)}`}else{if(a===0||a===100)return showErr('Percentage must be between 0 and 100, not including 0 or 100.');result=b/(a/100);desc=`Original value = ${fmt(result)}`;step=`${b} ÷ (${a} ÷ 100) = ${fmt(result)}`}big.textContent=fmt(result)+(m==='what'||m==='change'?'%':'');formula.innerHTML=desc;steps.textContent=step}
+function showErr(s){big.textContent='—';formula.textContent=s;steps.textContent='';}
+function fmt(n){return Number.isInteger(n)?n.toLocaleString('en-IN'):n.toLocaleString('en-IN',{maximumFractionDigits:4})}
+$('calc').onclick=calc;$('reset').onclick=()=>{type.value='of';x.value=25;y.value=200;updateLabels();calc()};type.onchange=updateLabels;
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{x.value=b.dataset.p;y.value=200;type.value='of';updateLabels();calc()});document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));$('copy').onclick=async()=>{let text=`${formula.textContent}\nSteps: ${steps.textContent}`;try{await navigator.clipboard.writeText(text);$('copy').textContent='✓ Copied';setTimeout(()=>$('copy').textContent='▣ Copy',1400)}catch{prompt('Copy result:',text)}};$('resetTop').onclick=$('reset').onclick;
+$('share').onclick=async()=>{try{await navigator.share({title:document.title,url:location.href})}catch{try{await navigator.clipboard.writeText(location.href);$('share').textContent='✓ Copied'}catch{prompt('Copy link:',location.href)}setTimeout(()=>$('share').textContent='↗ Share',1400)}};
+let favKey='kopersay:fav',favPath=location.pathname;function refreshFav(){let a=JSON.parse(localStorage.getItem(favKey)||'[]');$('fav').textContent=a.includes(favPath)?'★ Saved':'☆ Save Tool'}$('fav').onclick=()=>{let a=JSON.parse(localStorage.getItem(favKey)||'[]');a=a.includes(favPath)?a.filter(v=>v!==favPath):[...a,favPath];localStorage.setItem(favKey,JSON.stringify(a));refreshFav()};document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();calc()} });
+updateLabels();calc();refreshFav();
+</script>
+</body>
+</html>
