@@ -259,3 +259,14 @@ function resetTool() {
 function setStatus(message) {
   statusEl.textContent = message;
 }
+
+// All Tools navbar dropdown
+const nav = document.createElement('nav');
+nav.className = 'kopersay-tools-nav';
+nav.innerHTML = `<details><summary>All Tools ▾</summary><div class="tools-menu"><a href="tools/image-compressor.html">🗜️ Image Compressor</a><a href="tools/image-cropper.html">✂️ Image Cropper</a><a href="tools/image-converter.html">🔄 JPG PNG WebP Converter</a><a href="tools/pdf-to-jpg.html">📄 PDF to JPG</a><a href="tools/jpg-to-pdf.html">📝 JPG to PDF</a><a href="tools/image-size-calculator.html">📏 Image Size Calculator</a><a href="tools/percentage-calculator.html">🔢 Percentage Calculator</a><a href="tools/gst-calculator.html">💰 GST Calculator</a><a href="tools/age-calculator.html">📅 Age Calculator</a><a href="tools/time-date-calculator.html">⏱️ Time & Date Calculator</a><a href="tools/password-generator.html">🔐 Password Generator</a><a href="tools/word-counter.html">🔤 Word Counter</a><a href="tools/qr-code-generator.html">📱 QR Code Generator</a><a href="tools/color-picker.html">🎨 Color Picker</a><a href="tools/passport-photo-maker.html">📸 Passport Photo Maker</a></div></details>`;
+const topbarActions = document.querySelector('.topbar-actions');
+if (topbarActions) topbarActions.prepend(nav);
+
+const navStyle = document.createElement('style');
+navStyle.textContent = `.kopersay-tools-nav{position:relative;z-index:20}.kopersay-tools-nav details{position:relative}.kopersay-tools-nav summary{list-style:none;cursor:pointer;padding:10px 16px;border-radius:12px;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);font-weight:800;color:#26364a;box-shadow:0 8px 20px rgba(37,70,100,.1)}.kopersay-tools-nav summary::-webkit-details-marker{display:none}.tools-menu{position:absolute;right:0;top:calc(100% + 8px);width:270px;max-height:70vh;overflow:auto;padding:8px;border-radius:16px;background:rgba(255,255,255,.98);box-shadow:0 18px 45px rgba(37,70,100,.2);border:1px solid rgba(255,255,255,.95)}.tools-menu a{display:block;padding:10px 12px;border-radius:10px;color:#26364a;text-decoration:none;font-weight:700}.tools-menu a:hover{background:#f0f4ff;color:#5d43e8}@media(max-width:700px){.kopersay-tools-nav summary{padding:8px 11px;font-size:13px}.tools-menu{position:fixed;right:12px;left:12px;top:68px;width:auto;max-height:75vh}}`;
+document.head.appendChild(navStyle);
